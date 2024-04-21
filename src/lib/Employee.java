@@ -18,7 +18,7 @@ public class Employee {
 	private int monthWorkingInYear;
 
 	private boolean isForeigner;
-	private boolean isMale; 
+	private boolean isMale;
 
 	private int monthlySalary;
 	private int otherMonthlyIncome;
@@ -38,7 +38,7 @@ public class Employee {
 		this.monthJoined = monthJoined;
 		this.dayJoined = dayJoined;
 		this.isForeigner = isForeigner;
-		this.isMale = gender; 
+		this.isMale = gender;
 		child = new Child();
 	}
 
@@ -46,13 +46,6 @@ public class Employee {
 	private static final int GRADE_2_SALARY = 5_000_000;
 	private static final int GRADE_3_SALARY = 7_000_000;
 	private static final double FOREIGNER_SALARY_MULTIPLIER = 1.5;
-
-	/**
-	 * Fungsi untuk menentukan gaji bulanan pegawai berdasarkan grade kepegawaiannya
-	 * (grade 1: 3.000.000 per bulan, grade 2: 5.000.000 per bulan, grade 3:
-	 * 7.000.000 per bulan)
-	 * Jika pegawai adalah warga negara asing gaji bulanan diperbesar sebanyak 50%
-	 */
 
 	public void setMonthlySalary(int grade) {
 		int[] gradeSalaries = { GRADE_1_SALARY, GRADE_2_SALARY, GRADE_3_SALARY };
