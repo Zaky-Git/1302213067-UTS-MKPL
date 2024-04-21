@@ -55,6 +55,12 @@ public class Employee {
 	 * Jika pegawai adalah warga negara asing gaji bulanan diperbesar sebanyak 50%
 	 */
 
+	// Membuat variable constant untuk menanggulangi magic numbers
+	private static final int GRADE_1_SALARY = 3_000_000;
+	private static final int GRADE_2_SALARY = 5_000_000;
+	private static final int GRADE_3_SALARY = 7_000_000;
+	private static final double FOREIGNER_SALARY_MULTIPLIER = 1.5;
+
 	// Refactor the setMonthlySalary method to remove duplication
 	public void setMonthlySalary(int grade) {
 		int[] gradeSalareis = { GRADE_1_SALARY, GRADE_2_SALARY, GRADE_3_SALARY };
