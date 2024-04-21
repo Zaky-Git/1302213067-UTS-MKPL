@@ -95,7 +95,8 @@ public class Employee {
 			monthWorkingInYear = 12;
 		}
 
+		boolean hasSpouseIdNumber = spouseIdNumber != null && !spouseIdNumber.isEmpty();
 		return TaxFunction.calculateTax(monthlySalary, otherMonthlyIncome, monthWorkingInYear, annualDeductible,
-				spouseIdNumber.equals(""), childIdNumbers.size());
+				!hasSpouseIdNumber, childIdNumbers.size());
 	}
 }
