@@ -19,7 +19,7 @@ public class Employee {
 	private int monthWorkingInYear;
 
 	private boolean isForeigner;
-	private boolean gender; // true = Laki-laki, false = Perempuan
+	private boolean isMale; // true = Laki-laki, false = Perempuan
 
 	private int monthlySalary;
 	private int otherMonthlyIncome;
@@ -42,7 +42,7 @@ public class Employee {
 		this.monthJoined = monthJoined;
 		this.dayJoined = dayJoined;
 		this.isForeigner = isForeigner;
-		this.gender = gender;
+		this.isMale = gender; // true = laki-laki, false = perempuan,
 
 		childNames = new LinkedList<String>();
 		childIdNumbers = new LinkedList<String>();
