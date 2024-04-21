@@ -7,8 +7,9 @@ public class TaxFunction {
 	private static final int CHILD_DEDUCTION_PER_CHILD = 1500000;
 	private static final double TAX_RATE = 0.05;
 
-	public static int calculateTax(int monthlySalary, int otherMonthlyIncome, int numberOfMonthsWorked, int deductible,
+	public static int calculateTax(int monthlySalary, int otherMonthlyIncome, int numberOfMonthWorking, int deductible,
 			boolean isMarried, int numberOfChildren) {
+    
 		if (numberOfMonthsWorked > 12) {
 			throw new IllegalArgumentException("Number of months worked exceeds 12 per year");
 		}
