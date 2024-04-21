@@ -1,7 +1,6 @@
 package lib;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,11 +24,8 @@ public class Employee {
 	private int otherMonthlyIncome;
 	private int annualDeductible;
 
-	private String spouseName;
-	private String spouseIdNumber;
-
-	private List<String> childNames;
-	private List<String> childIdNumbers;
+	private Spouse spouse;
+	private Child child;
 
 	public Employee(String employeeId, String firstName, String lastName, String idNumber, String address,
 			int yearJoined, int monthJoined, int dayJoined, boolean isForeigner, boolean gender) {
@@ -43,10 +39,14 @@ public class Employee {
 		this.dayJoined = dayJoined;
 		this.isForeigner = isForeigner;
 		this.isMale = gender; // true = laki-laki, false = perempuan,
-
-		childNames = new LinkedList<String>();
-		childIdNumbers = new LinkedList<String>();
+		child = new Child();
 	}
+
+	// Constants variable untuk mengatasi magic number
+	private static final int GRADE_1_SALARY = 3_000_000;
+	private static final int GRADE_2_SALARY = 5_000_000;
+	private static final int GRADE_3_SALARY = 7_000_000;
+	private static final double FOREIGNER_SALARY_MULTIPLIER = 1.5;
 
 	/**
 	 * Fungsi untuk menentukan gaji bulanan pegawai berdasarkan grade kepegawaiannya
@@ -55,16 +55,9 @@ public class Employee {
 	 * Jika pegawai adalah warga negara asing gaji bulanan diperbesar sebanyak 50%
 	 */
 
-	// Membuat variable constant untuk menanggulangi magic numbers
-	private static final int GRADE_1_SALARY = 3_000_000;
-	private static final int GRADE_2_SALARY = 5_000_000;
-	private static final int GRADE_3_SALARY = 7_000_000;
-	private static final double FOREIGNER_SALARY_MULTIPLIER = 1.5;
-
-	// Refactor the setMonthlySalary method to remove duplication
 	public void setMonthlySalary(int grade) {
-		int[] gradeSalareis = { GRADE_1_SALARY, GRADE_2_SALARY, GRADE_3_SALARY };
-		monthlySalary = gradeSalareis[Math.min(grade, gradeSalareis.length) - 1];
+		int[] gradeSalaries = { GRADE_1_SALARY, GRADE_2_SALARY, GRADE_3_SALARY };
+		monthlySalary = gradeSalaries[Math.min(grade, gradeSalaries.length) - 1];
 
 		if (isForeigner) {
 			monthlySalary *= FOREIGNER_SALARY_MULTIPLIER;
@@ -80,29 +73,19 @@ public class Employee {
 	}
 
 	public void setSpouse(String spouseName, String spouseIdNumber) {
-		this.spouseName = spouseName;
-		this.spouseIdNumber = idNumber;
+		this.spouse = new Spouse(spouseName, spouseIdNumber);
 	}
 
 	public void addChild(String childName, String childIdNumber) {
-		childNames.add(childName);
-		childIdNumbers.add(childIdNumber);
+		child.addChild(childName, childIdNumber);
 	}
 
 	public int getAnnualIncomeTax() {
-
-		// Menghitung berapa lama pegawai bekerja dalam setahun ini, jika pegawai sudah
-		// bekerja dari tahun sebelumnya maka otomatis dianggap 12 bulan.
 		LocalDate date = LocalDate.now();
+		int monthWorkingInYear = date.getYear() == yearJoined ? date.getMonthValue() - monthJoined : 12;
 
-		if (date.getYear() == yearJoined) {
-			monthWorkingInYear = date.getMonthValue() - monthJoined;
-		} else {
-			monthWorkingInYear = 12;
-		}
-
-		boolean hasSpouseIdNumber = spouseIdNumber != null && !spouseIdNumber.isEmpty();
+		boolean hasSpouseIdNumber = spouse != null && !spouse.getSpouseIdNumber().isEmpty();
 		return TaxFunction.calculateTax(monthlySalary, otherMonthlyIncome, monthWorkingInYear, annualDeductible,
-				!hasSpouseIdNumber, childIdNumbers.size());
+				!hasSpouseIdNumber, child.getChildIdNumbers().size());
 	}
 }
