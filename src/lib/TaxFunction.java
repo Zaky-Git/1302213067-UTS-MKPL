@@ -2,6 +2,11 @@ package lib;
 
 public class TaxFunction {
 
+	private static final int BASE_DEDUCTION = 54000000;
+	private static final int SPOUSE_DEDUCTION = 4500000;
+	private static final int CHILD_DEDUCTION_PER_CHILD = 1500000;
+	private static final double TAX_RATE = 0.05;
+
 	public static int calculateTax(int monthlySalary, int otherMonthlyIncome, int numberOfMonthWorking, int deductible,
 			boolean isMarried, int numberOfChildren) {
 
