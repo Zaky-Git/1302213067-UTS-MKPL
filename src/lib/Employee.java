@@ -42,7 +42,6 @@ public class Employee {
 		child = new Child();
 	}
 
-	// Constants variable untuk mengatasi magic number
 	private static final int GRADE_1_SALARY = 3_000_000;
 	private static final int GRADE_2_SALARY = 5_000_000;
 	private static final int GRADE_3_SALARY = 7_000_000;
