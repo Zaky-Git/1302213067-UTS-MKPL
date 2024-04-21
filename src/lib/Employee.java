@@ -18,7 +18,7 @@ public class Employee {
 	private int monthWorkingInYear;
 
 	private boolean isForeigner;
-	private boolean isMale; // true = Laki-laki, false = Perempuan
+	private boolean isMale; 
 
 	private int monthlySalary;
 	private int otherMonthlyIncome;
@@ -38,7 +38,7 @@ public class Employee {
 		this.monthJoined = monthJoined;
 		this.dayJoined = dayJoined;
 		this.isForeigner = isForeigner;
-		this.isMale = gender; // true = laki-laki, false = perempuan,
+		this.isMale = gender; 
 		child = new Child();
 	}
 
