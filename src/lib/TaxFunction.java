@@ -1,7 +1,7 @@
 package lib;
 
 public class TaxFunction {
-
+  
 	private static final int BASE_DEDUCTION = 54000000;
 	private static final int SPOUSE_DEDUCTION = 4500000;
 	private static final int CHILD_DEDUCTION_PER_CHILD = 1500000;
